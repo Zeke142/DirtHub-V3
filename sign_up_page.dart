@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import '../app/dirt_hub_elite_app.dart';  // Correct import for navigation to main app
+import '../app/dirt_hub_elite_app.dart';  // Correct import for navigation to the main app
 
 class SignUpPage extends StatefulWidget {
-  const SignUpPage({Key? key}) : super(key: key);  // Added named key parameter
+  const SignUpPage({super.key});  // Using super parameter for the key
 
   @override
   SignUpPageState createState() => SignUpPageState();  // No underscore to avoid private type in public API
@@ -25,12 +25,13 @@ class SignUpPageState extends State<SignUpPage> {
     }
 
     try {
-      UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      // Try to sign up the user with email and password
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: _emailController.text,
         password: _passwordController.text,
       );
 
-      // Check if the widget is still mounted before navigating (to avoid async issues)
+      // Check if the widget is still mounted before navigating
       if (mounted) {
         // Navigate to the main app after sign-up
         Navigator.pushReplacement(
@@ -42,7 +43,7 @@ class SignUpPageState extends State<SignUpPage> {
       setState(() {
         _errorMessage = 'Failed to create account. Please try again.';
       });
-      debugPrint("Error creating account: $e");  // Use debugPrint instead of print for logging
+      debugPrint("Error creating account: $e");  // Use debugPrint for logging
     }
   }
 
