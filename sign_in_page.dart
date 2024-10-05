@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import '../app/dirt_hub_elite_app.dart';  // Correct import to navigate to main app after sign-in
-import 'sign_up_page.dart';  // Correct import for navigation to SignUpPage
+import '../app/dirt_hub_elite_app.dart';  // Import for navigation to the main app
 
 class SignInPage extends StatefulWidget {
+  const SignInPage({super.key});  // Using super parameter for the key
+
   @override
-  _SignInPageState createState() => _SignInPageState();
+  SignInPageState createState() => SignInPageState();  // No underscore to avoid private type in public API
 }
 
-class _SignInPageState extends State<SignInPage> {
+class SignInPageState extends State<SignInPage> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   String _errorMessage = '';
@@ -16,25 +17,25 @@ class _SignInPageState extends State<SignInPage> {
   // Function to handle sign-in
   Future<void> _signIn() async {
     try {
+      // Sign in the user with email and password
       UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: _emailController.text,
         password: _passwordController.text,
       );
 
-      User? user = userCredential.user;
-
-      if (user != null) {
-        // If sign-in is successful, navigate to the main app
+      // Check if the widget is still mounted before navigating
+      if (mounted) {
+        // Navigate to the main app after successful sign-in
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => DirtHubEliteApp()),  // Navigate to main app
+          MaterialPageRoute(builder: (context) => const DirtHubEliteApp()),  // Correct navigation to main app
         );
       }
     } catch (e) {
       setState(() {
         _errorMessage = 'Failed to sign in. Please check your credentials.';
       });
-      print("Error signing in: $e");
+      debugPrint("Error signing in: $e");  // Use debugPrint for logging
     }
   }
 
@@ -42,7 +43,7 @@ class _SignInPageState extends State<SignInPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Sign In'),
+        title: const Text('Sign In'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -51,37 +52,27 @@ class _SignInPageState extends State<SignInPage> {
           children: [
             TextField(
               controller: _emailController,
-              decoration: InputDecoration(labelText: 'Email'),
+              decoration: const InputDecoration(labelText: 'Email'),
             ),
             TextField(
               controller: _passwordController,
-              decoration: InputDecoration(labelText: 'Password'),
+              decoration: const InputDecoration(labelText: 'Password'),
               obscureText: true,
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             ElevatedButton(
               onPressed: _signIn,
-              child: Text('Sign In'),
+              child: const Text('Sign In'),
             ),
             if (_errorMessage.isNotEmpty)
               Padding(
                 padding: const EdgeInsets.only(top: 8.0),
                 child: Text(
                   _errorMessage,
-                  style: TextStyle(color: Colors.red),
+                  style: const TextStyle(color: Colors.red),
                 ),
               ),
-            SizedBox(height: 20),
-            // Button to navigate to the Sign-Up page
-            TextButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => SignUpPage()),  // Navigate to SignUpPage
-                );
-              },
-              child: Text('Don’t have an account? Sign up here'),
-            ),
+            const SizedBox(height: 20),
           ],
         ),
       ),
