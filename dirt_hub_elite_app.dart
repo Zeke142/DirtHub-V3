@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import '../pages/buyers_page.dart';    // Adjusted import path for BuyersPage
-import '../pages/sellers_page.dart';   // Adjusted import path for SellersPage
-import '../pages/transport_page.dart'; // Adjusted import path for TransportPage
+import '../pages/buyers_page.dart';    // Ensure correct path to BuyersPage
+import '../pages/sellers_page.dart';   // Ensure correct path to SellersPage
+import '../pages/transport_page.dart'; // Ensure correct path to TransportPage
 
 class DirtHubEliteApp extends StatefulWidget {
   const DirtHubEliteApp({super.key});
@@ -13,12 +13,14 @@ class DirtHubEliteApp extends StatefulWidget {
 class _DirtHubEliteAppState extends State<DirtHubEliteApp> {
   int _selectedIndex = 0;
 
+  // List of the pages in the bottom navigation
   final List<Widget> _pages = [
-    const BuyersPage(),    // Ensure BuyersPage is defined and imported correctly
-    const SellersPage(),   // Ensure SellersPage is defined and imported correctly
-    const TransportPage(), // Ensure TransportPage is defined and imported correctly
+    BuyersPage(),    // Ensure BuyersPage is defined and imported correctly
+    SellersPage(),   // Ensure SellersPage is defined and imported correctly
+    TransportPage(), // Ensure TransportPage is defined and imported correctly
   ];
 
+  // Function to handle item selection in the bottom navigation bar
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
@@ -31,10 +33,10 @@ class _DirtHubEliteAppState extends State<DirtHubEliteApp> {
       appBar: AppBar(
         title: const Text('DirtHub Elite'),
       ),
-      body: _pages[_selectedIndex],
+      body: _pages[_selectedIndex],  // Displays the currently selected page
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _selectedIndex,
-        onTap: _onItemTapped,
+        currentIndex: _selectedIndex,  // Keeps track of the selected index
+        onTap: _onItemTapped,  // Updates the page when a navigation item is tapped
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.shopping_cart),
