@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import '../app/dirt_hub_elite_app.dart';  // Updated path to DirtHubEliteApp
+import '../app/dirt_hub_elite_app.dart'; // Correct import path for DirtHubEliteApp
+import 'sign_up_page.dart'; // Correct import path for SignUpPage
 
 class SignInPage extends StatefulWidget {
   @override
@@ -70,6 +71,17 @@ class _SignInPageState extends State<SignInPage> {
                   style: TextStyle(color: Colors.red),
                 ),
               ),
+            SizedBox(height: 20),
+            // Button to navigate to the Sign-Up page
+            TextButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => SignUpPage()), // Navigate to SignUpPage
+                );
+              },
+              child: Text('Don’t have an account? Sign up here'),
+            ),
           ],
         ),
       ),
