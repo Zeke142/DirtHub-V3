@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'pages/buyers_page.dart';  // Correct import path for BuyersPage
-import 'pages/sellers_page.dart'; // Correct import path for SellersPage
-import 'pages/transport_page.dart'; // Correct import path for TransportPage
+import '../pages/buyers_page.dart';    // Adjusted import path for BuyersPage
+import '../pages/sellers_page.dart';   // Adjusted import path for SellersPage
+import '../pages/transport_page.dart'; // Adjusted import path for TransportPage
 
 class DirtHubEliteApp extends StatefulWidget {
   const DirtHubEliteApp({super.key});
@@ -14,9 +14,9 @@ class _DirtHubEliteAppState extends State<DirtHubEliteApp> {
   int _selectedIndex = 0;
 
   final List<Widget> _pages = [
-    BuyersPage(),
-    SellersPage(),
-    TransportPage(),
+    const BuyersPage(),    // Ensure BuyersPage is defined and imported correctly
+    const SellersPage(),   // Ensure SellersPage is defined and imported correctly
+    const TransportPage(), // Ensure TransportPage is defined and imported correctly
   ];
 
   void _onItemTapped(int index) {
