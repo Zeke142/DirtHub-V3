@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import 'pages/buyers_page.dart';  // Updated import path for BuyersPage
-import 'pages/sellers_page.dart'; // Updated import path for SellersPage
-import 'pages/transport_page.dart'; // Updated import path for TransportPage
+import 'pages/buyers_page.dart';  // Correct import path for BuyersPage
+import 'pages/sellers_page.dart'; // Correct import path for SellersPage
+import 'pages/transport_page.dart'; // Correct import path for TransportPage
 
 class DirtHubEliteApp extends StatefulWidget {
+  const DirtHubEliteApp({super.key});
+
   @override
   _DirtHubEliteAppState createState() => _DirtHubEliteAppState();
 }
@@ -27,13 +29,13 @@ class _DirtHubEliteAppState extends State<DirtHubEliteApp> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('DirtHub Elite'),
+        title: const Text('DirtHub Elite'),
       ),
       body: _pages[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
-        items: [
+        items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.shopping_cart),
             label: 'Buyers',
