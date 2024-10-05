@@ -3,15 +3,17 @@ import '../pages/buyers_page.dart';    // Ensure correct path to BuyersPage
 import '../pages/sellers_page.dart';   // Ensure correct path to SellersPage
 import '../pages/transport_page.dart'; // Ensure correct path to TransportPage
 
+// Public class for the main app widget
 class DirtHubEliteApp extends StatefulWidget {
-  const DirtHubEliteApp({super.key});
+  const DirtHubEliteApp({super.key});  // Use super parameter for key
 
   @override
-  _DirtHubEliteAppState createState() => _DirtHubEliteAppState();
+  DirtHubEliteAppState createState() => DirtHubEliteAppState();  // Ensure public state class
 }
 
-class _DirtHubEliteAppState extends State<DirtHubEliteApp> {
-  int _selectedIndex = 0;
+// Public state class (no underscore)
+class DirtHubEliteAppState extends State<DirtHubEliteApp> {
+  int _selectedIndex = 0;  // Private variable for selected index
 
   // List of the pages in the bottom navigation
   final List<Widget> _pages = [
