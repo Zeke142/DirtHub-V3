@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
 
 class BuyersPage extends StatelessWidget {
+  const BuyersPage({Key? key}) : super(key: key);  // Added named 'key' parameter
+
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text('Buyers Page'),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Buyers Page'),
+      ),
+      body: const Center(
+        child: Text('This is the Buyers Page'),
+      ),
     );
   }
 }
