@@ -1,28 +1,21 @@
 import 'package:flutter/material.dart';
-import '../pages/buyers_page.dart';    // Ensure correct path to BuyersPage
-import '../pages/sellers_page.dart';   // Ensure correct path to SellersPage
-import '../pages/transport_page.dart'; // Ensure correct path to TransportPage
 
-// Public class for the main app widget
 class DirtHubEliteApp extends StatefulWidget {
-  const DirtHubEliteApp({super.key});  // Use super parameter for key
+  const DirtHubEliteApp({super.key});  // Super parameter for key
 
   @override
-  DirtHubEliteAppState createState() => DirtHubEliteAppState();  // Ensure public state class
+  DirtHubEliteAppState createState() => DirtHubEliteAppState();  // Public state class
 }
 
-// Public state class (no underscore)
 class DirtHubEliteAppState extends State<DirtHubEliteApp> {
-  int _selectedIndex = 0;  // Private variable for selected index
+  int _selectedIndex = 0;
 
-  // List of the pages in the bottom navigation
   final List<Widget> _pages = [
-    BuyersPage(),    // Ensure BuyersPage is defined and imported correctly
-    SellersPage(),   // Ensure SellersPage is defined and imported correctly
-    TransportPage(), // Ensure TransportPage is defined and imported correctly
+    const Center(child: Text('Buyers Page')),    // Placeholder for BuyersPage
+    const Center(child: Text('Sellers Page')),   // Placeholder for SellersPage
+    const Center(child: Text('Transport Page')), // Placeholder for TransportPage
   ];
 
-  // Function to handle item selection in the bottom navigation bar
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
@@ -35,10 +28,10 @@ class DirtHubEliteAppState extends State<DirtHubEliteApp> {
       appBar: AppBar(
         title: const Text('DirtHub Elite'),
       ),
-      body: _pages[_selectedIndex],  // Displays the currently selected page
+      body: _pages[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _selectedIndex,  // Keeps track of the selected index
-        onTap: _onItemTapped,  // Updates the page when a navigation item is tapped
+        currentIndex: _selectedIndex,
+        onTap: _onItemTapped,
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.shopping_cart),
