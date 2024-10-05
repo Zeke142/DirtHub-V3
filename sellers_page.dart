@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class SellersPage extends StatelessWidget {
-  const SellersPage({Key? key}) : super(key: key);  // Added named 'key' parameter
+  const SellersPage({super.key});  // Converted 'key' to a super parameter
 
   @override
   Widget build(BuildContext context) {
