@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import '../app/dirt_hub_elite_app.dart';  // Correct import to navigate to DirtHubEliteApp after sign-up
-import 'sign_in_page.dart';  // Correct import to navigate back to SignInPage
+import '../app/dirt_hub_elite_app.dart';  // Correct import for navigation to main app
 
 class SignUpPage extends StatefulWidget {
+  const SignUpPage({Key? key}) : super(key: key);  // Added named key parameter
+
   @override
-  _SignUpPageState createState() => _SignUpPageState();
+  SignUpPageState createState() => SignUpPageState();  // No underscore to avoid private type in public API
 }
 
-class _SignUpPageState extends State<SignUpPage> {
+class SignUpPageState extends State<SignUpPage> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _confirmPasswordController = TextEditingController();
@@ -29,20 +30,19 @@ class _SignUpPageState extends State<SignUpPage> {
         password: _passwordController.text,
       );
 
-      User? user = userCredential.user;
-
-      if (user != null) {
-        // If sign-up is successful, navigate to the main app
+      // Check if the widget is still mounted before navigating (to avoid async issues)
+      if (mounted) {
+        // Navigate to the main app after sign-up
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => DirtHubEliteApp()),  // Correct navigation to main app
+          MaterialPageRoute(builder: (context) => const DirtHubEliteApp()),  // Correct navigation to main app
         );
       }
     } catch (e) {
       setState(() {
         _errorMessage = 'Failed to create account. Please try again.';
       });
-      print("Error creating account: $e");
+      debugPrint("Error creating account: $e");  // Use debugPrint instead of print for logging
     }
   }
 
@@ -50,7 +50,7 @@ class _SignUpPageState extends State<SignUpPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Sign Up'),
+        title: const Text('Sign Up'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -59,37 +59,32 @@ class _SignUpPageState extends State<SignUpPage> {
           children: [
             TextField(
               controller: _emailController,
-              decoration: InputDecoration(labelText: 'Email'),
+              decoration: const InputDecoration(labelText: 'Email'),
             ),
             TextField(
               controller: _passwordController,
-              decoration: InputDecoration(labelText: 'Password'),
+              decoration: const InputDecoration(labelText: 'Password'),
               obscureText: true,
             ),
             TextField(
               controller: _confirmPasswordController,
-              decoration: InputDecoration(labelText: 'Confirm Password'),
+              decoration: const InputDecoration(labelText: 'Confirm Password'),
               obscureText: true,
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             ElevatedButton(
               onPressed: _signUp,
-              child: Text('Sign Up'),
+              child: const Text('Sign Up'),
             ),
             if (_errorMessage.isNotEmpty)
               Padding(
                 padding: const EdgeInsets.only(top: 8.0),
                 child: Text(
                   _errorMessage,
-                  style: TextStyle(color: Colors.red),
+                  style: const TextStyle(color: Colors.red),
                 ),
               ),
-            TextButton(
-              onPressed: () {
-                Navigator.pop(context);  // Navigate back to SignInPage
-              },
-              child: Text('Already have an account? Sign in here'),
-            ),
+            const SizedBox(height: 20),
           ],
         ),
       ),
