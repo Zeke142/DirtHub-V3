@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import '../app/dirt_hub_elite_app.dart';  // Correct import for navigation to main app
+import '../app/dirt_hub_elite_app.dart';  // Correct import path for DirtHubEliteApp
 
 class SignInPage extends StatefulWidget {
   const SignInPage({super.key});  // Using super parameter for key
 
   @override
-  SignInPageState createState() => SignInPageState();  // No underscore to avoid private type in public API
+  SignInPageState createState() => SignInPageState();  // Public state class
 }
 
 class SignInPageState extends State<SignInPage> {
@@ -17,24 +17,18 @@ class SignInPageState extends State<SignInPage> {
   // Function to handle sign-in
   Future<void> _signIn() async {
     try {
-      // Sign in the user and store the credential details
-      UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+      // Sign in the user
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: _emailController.text,
         password: _passwordController.text,
       );
 
-      // Accessing user data (optional)
-      User? user = userCredential.user;
-      if (user != null) {
-        debugPrint("Signed in as: ${user.email}");
-      }
-
       // Check if the widget is still mounted before navigating
       if (mounted) {
-        // Navigate to the main app after successful sign-in
+        // Navigate to DirtHubEliteApp after successful sign-in
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => const DirtHubEliteApp()),  // Correct navigation to main app
+          MaterialPageRoute(builder: (context) => const DirtHubEliteApp()),  // Correct navigation to DirtHubEliteApp
         );
       }
     } catch (e) {
