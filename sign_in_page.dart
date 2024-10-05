@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import '../app/dirt_hub_elite_app.dart'; // Correct import path for DirtHubEliteApp
+import '../app/dirt_hub_elite_app.dart'; // Ensure this path is correct
 import 'sign_up_page.dart'; // Correct import path for SignUpPage
 
 class SignInPage extends StatefulWidget {
@@ -27,7 +27,7 @@ class _SignInPageState extends State<SignInPage> {
         // If sign-in is successful, navigate to the main app
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => DirtHubEliteApp()), // Use DirtHubEliteApp here
+          MaterialPageRoute(builder: (context) => DirtHubEliteApp()), // Ensure DirtHubEliteApp is properly defined
         );
       }
     } catch (e) {
